@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>{{ 'views.edit.edit'|trans({'%entity%': 'Role'}) }}</h1>
+
+    {{ form_start(edit_form, { "attr" : { "class" : "well" } }) }}
+    {{ form_widget(edit_form) }}
+    <div>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-ok"></span> {{ 'views.edit.editbutton'|trans }}
+        </button>
+    </div>
+    {{ form_end(edit_form) }}
+
+        <div class="well-sm">
+    <ul class="record_actions list-inline">
+        <li>
+            <a href="{{ path('admin_role') }}">
+                <span class="glyphicon glyphicon-list"></span>
+                {{ 'views.recordactions.backtothelist'|trans }}
+            </a>
+        </li>
+                <li>
+            {{ form_start(delete_form) }}
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span> {{ 'views.recordactions.delete'|trans }}
+            </button>
+            {{ form_end(delete_form) }}
+        </li>
+        </ul>
+</div>{% endblock %}

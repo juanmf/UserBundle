@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="application_user.access.role_hierarchy.class">DocDigital\Bundle\UserBundle\Role\RoleHierarchy</parameter>
+    </parameters>
+
+    <services>
+        <service id="user_user.registration.form.type" class="DocDigital\Bundle\UserBundle\Form\UserType">
+            <tag name="form.type" alias="application_userbundle_user" />
+            <argument>%fos_user.model.user.class%</argument>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="application_user.access.role_hierarchy_voter" class="%security.access.role_hierarchy_voter.class%">
+            <argument type="service" id="application_user.access.role_hierarchy" />
+            <tag name="security.voter" priority="245" />
+        </service>
+        
+        <service id="security.access.expression_voter" class="%security.access.expression_voter.class%">
+            <argument type="service" id="security.expression_language" />
+            <argument type="service" id="security.authentication.trust_resolver" />
+            <argument type="service" id="application_user.access.role_hierarchy" on-invalid="null" />
+            <tag name="security.voter" priority="245" />
+        </service>
+        
+        <service id="application_user.access.role_hierarchy" class="%application_user.access.role_hierarchy.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+    </services>
+
+</container>

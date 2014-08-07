@@ -1,0 +1,43 @@
+
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ parent() ~ ' - ' }}Role
+{% endblock %}
+
+{% block body -%}
+<h1>Role</h1>
+<form class="form-horizontal well" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-9">
+            <div class="form-control disabled">
+                            {{ entity.name }}
+                        </div>
+        </div>
+    </div>
+</form>
+        <div class="well-sm">
+    <ul class="record_actions list-inline">
+        <li>
+            <a href="{{ path('admin_role') }}">
+                <span class="glyphicon glyphicon-list"></span>
+                {{ 'views.recordactions.backtothelist'|trans }}
+            </a>
+        </li>
+            <li>
+            <a class="btn btn-default" href="{{ path('admin_role_edit', { 'id': entity.id }) }}">
+                <span class="glyphicon glyphicon-edit"></span>
+                {{ 'views.recordactions.edit'|trans }}
+            </a>
+        </li>
+                <li>
+            {{ form_start(delete_form) }}
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span> {{ 'views.recordactions.delete'|trans }}
+            </button>
+            {{ form_end(delete_form) }}
+        </li>
+        </ul>
+</div>{% endblock %}

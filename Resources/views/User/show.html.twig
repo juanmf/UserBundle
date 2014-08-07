@@ -1,0 +1,103 @@
+
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ parent() ~ ' - ' }}User
+{% endblock %}
+
+{% block body -%}
+<h1>User</h1>
+<form class="form-horizontal well" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Apellido</label>
+        <div class="col-sm-9">
+            <div class="form-control disabled">
+                {{ entity.apellido }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Nombre</label>
+        <div class="col-sm-9">
+            <div class="form-control disabled">
+                {{ entity.nombre }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Username</label>
+        <div class="col-sm-9">
+            <div class="form-control disabled">
+                {{ entity.username }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-9">
+            <div class="form-control disabled">
+                {{ entity.email }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Enabled</label>
+        <div class="col-sm-9">
+        {% if entity.enabled %}
+            <span class="glyphicon glyphicon-ok"></span>
+        {% endif %}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Roles</label>
+        <div class="col-sm-9">
+        {% if entity.roles|length > 0 %}
+            <ul>
+                {% for r in entity.roles %}
+                    <li>{{ r }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Lastlogin</label>
+        <div class="col-sm-9">
+            <div class="form-control disabled">
+                {{ entity.lastLogin|date('d/m/Y H:i') }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Createdat</label>
+        <div class="col-sm-9">
+            <div class="form-control disabled">
+                {{ entity.createdAt|date('d/m/Y H:i') }}
+            </div>
+        </div>
+    </div>
+</form>
+        <div class="well-sm">
+    <ul class="record_actions list-inline">
+        <li>
+            <a href="{{ path('admin_user') }}">
+                <span class="glyphicon glyphicon-list"></span>
+                {{ 'views.recordactions.backtothelist'|trans }}
+            </a>
+        </li>
+            <li>
+            <a class="btn btn-default" href="{{ path('admin_user_edit', { 'id': entity.id }) }}">
+                <span class="glyphicon glyphicon-edit"></span>
+                {{ 'views.recordactions.edit'|trans }}
+            </a>
+        </li>
+                <li>
+            {{ form_start(delete_form) }}
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span> {{ 'views.recordactions.delete'|trans }}
+            </button>
+            {{ form_end(delete_form) }}
+        </li>
+        </ul>
+</div>{% endblock %}

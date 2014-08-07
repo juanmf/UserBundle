@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ parent() ~ ' - ' ~ 'views.new.creation'|trans({'%entity%': 'Role'}) }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{{ 'views.new.creation'|trans({'%entity%': 'Role'}) }}</h1>
+
+    {{ form_start(form, { "attr" : { "class" : "well" } }) }}
+    {{ form_widget(form) }}
+    <div>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-ok"></span> {{ 'views.new.create'|trans }}
+        </button>
+    </div>
+    {{ form_end(form) }}
+
+        <div class="well-sm">
+    <ul class="record_actions list-inline">
+        <li>
+            <a href="{{ path('admin_role') }}">
+                <span class="glyphicon glyphicon-list"></span>
+                {{ 'views.recordactions.backtothelist'|trans }}
+            </a>
+        </li>
+            </ul>
+</div>{% endblock %}

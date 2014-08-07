@@ -1,0 +1,18 @@
+/* 
+    Document   : userbundle
+    Created on : Aug 3, 2014, 6:32:29 PM
+    Author     : juanmf
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+div#application_userbundle_user_rolesCollection input {
+    display:block;
+}
+
+div#application_userbundle_user_rolesCollection label {
+    display:block;
+    margin-top: -1.2em;
+    padding-left: 1em;
+    padding-bottom: 5px;
+}

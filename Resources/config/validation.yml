@@ -1,0 +1,19 @@
+DocDigital\Bundle\UserBundle\Entity\User:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        fields: usernameCanonical
+        errorPath: username
+        message: fos_user.username.already_used
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        fields: emailCanonical
+        errorPath: email
+        message: fos_user.email.already_used
+  properties:
+    email:
+      - NotBlank: ~
+      - Email:
+          checkMX: true
+    username:
+      - NotBlank: ~
+    plainPassword:
+      - Length: { min: 5 }

@@ -1,0 +1,117 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Role'}) }}
+{% endblock %}
+
+{% block body -%}
+
+<div class="row">
+    <div class="col-sm-10">
+        <h1>{{ 'views.index.list'|trans({'%entity%': 'Role'}) }}</h1>
+    </div>
+    <div class="col-sm-2">
+        <div class="pull-right">
+            <a class="btn btn-default" data-toggle="collapse" data-target="#filters">
+                {{ 'views.index.filters'|trans }}
+                <span class="caret"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% if filterForm.vars.errors|length > 0 %}
+<div class="row">
+    <div class="col-sm-12">
+        {{ form_errors(filterForm) }}
+    </div>
+</div>
+{% endif %}
+
+{% set haserrors = hasErrors(filterForm) %}
+{% if not haserrors and filterForm is filtered %}
+<div class="alert alert-info">
+    <span class="glyphicon glyphicon-filter"></span> <strong>{{ 'views.index.appliedfilters'|trans }}</strong>
+    {{ renderAppliedFilters(filterForm) }}
+</div>
+{% endif %}
+
+<div class="row collapse{% if haserrors %} in{% endif %}" id="filters">
+    <div class="col-sm-12">
+        {{ form_start(filterForm, { "attr" : { "class" : "well" } }) }}
+            {{ form_widget(filterForm) }}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="pull-right">
+                    <button class="btn btn-default" type="submit" name="filter_action" value="filter">
+                        <span class="glyphicon glyphicon-search"></span> {{ 'views.index.filter'|trans }}
+                    </button>
+                    <button class="btn btn-default" type="submit" name="filter_action" value="reset">
+                        <span class="glyphicon glyphicon-minus"></span> {{ 'views.index.reset'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(filterForm) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="records_list table table-striped table-bordered table-condensed remove-margin-bottom">
+            <thead>
+                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Parent</th>
+                                    <th>{{ 'views.index.actions'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('admin_role_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.name }}</td>
+                        <td>{% if entity.parent %}{{ entity.parent.role }}{% endif %}</td>
+                        <td>                                    <ul class="list-inline remove-margin-bottom">
+                                <li>
+                                    <a class="btn btn-default" href="{{ path('admin_role_show', { 'id': entity.id }) }}">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                {{ 'views.actions.show'|trans }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-default" href="{{ path('admin_role_edit', { 'id': entity.id }) }}">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                                                {{ 'views.actions.edit'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        {{ pagerHtml|raw }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="list-inline">
+            <li>
+                <a class="btn btn-primary" href="{{ path('admin_role_new') }}">
+                    <span class="glyphicon glyphicon-file"></span>
+                    {{ 'views.index.createnew'|trans }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% set passRequired = form.vars.value.id is empty %}
+<div class="row">
+    <div class="col-sm-6">{{ form_row(form.username) }}</div>
+    <div class="col-sm-6">{{ form_row(form.email) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">{{ form_row(form.plainPassword.first, { 'required' : passRequired }) }}</div>
+    <div class="col-sm-6">{{ form_row(form.plainPassword.second, { 'required' : passRequired }) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-4">{{ form_row(form.apellido) }}</div>
+    <div class="col-sm-4">{{ form_row(form.nombre) }}</div>
+    <div class="col-sm-4">{{ form_row(form.enabled) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-12">{{ form_row(form.rolesCollection) }}</div>
+</div>
+{{ form_rest(form) }}
