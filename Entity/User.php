@@ -3,7 +3,6 @@
 namespace DocDigital\Bundle\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use DocDigital\Bundle\ToolsBundle\Collection\InverseAwareArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -13,7 +12,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="DocDigital\Bundle\UserBundle\Entity\UserRepository")
  * 
  * @ORM\Table(name="fos_user")
  * @Assert\Callback(methods={"validatePassword"})
@@ -45,7 +44,7 @@ class User extends BaseUser
     
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users", fetch="EAGER", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users", cascade={"persist"})
      * @ORM\JoinTable(name="fos_user_role")
      */
     protected $roles;

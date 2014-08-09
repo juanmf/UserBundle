@@ -9,6 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table(name="fos_role")
  * @ORM\Entity(repositoryClass="DocDigital\Bundle\UserBundle\Entity\RoleRepository")
+ * 
+ * @see User
+ * @see \DocDigital\Bundle\UserBundle\Role\RoleHierarchy
+ * 
+ * @author Juan Manuel Fernandez <juanmf@gmail.com>
  */
 class Role implements RoleInterface
 {
@@ -25,14 +30,14 @@ class Role implements RoleInterface
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Role", inversedBy="children", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Role", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      * @var Role[]
      */
     private $parent;
     
     /**
-     * @ORM\OneToMany(targetEntity="Role", mappedBy="parent", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="Role", mappedBy="parent")
      * @var ArrayCollection|Role[]
      */
     private $children;

@@ -26,8 +26,8 @@ class RoleHierarchy implements RoleHierarchyInterface
      */
     public function __construct(EntityManager $em)
     {
-        $this->hierarchy = $em->getRepository('DdUserBundle:Role')->findAll();
-
+        // Debug Tool Bar triggers this construct 12 times, only in dev.
+        $this->hierarchy = $em->getRepository('DdUserBundle:Role')->findAllWithSons();
         $this->buildRoleMap();
     }
 
