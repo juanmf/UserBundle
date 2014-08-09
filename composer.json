@@ -1,0 +1,24 @@
+{
+    "name": "docdigital/user-bundle",
+    "description": "Integrates RolesHierarchy with Doctrine, adds user and Roles listings, paginated with Pager Phanta",
+    "keywords": ["filter","form"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Juan Manuel Fernandez",
+            "email": "juanmf@gmail.com"
+        }
+    ],
+    "require": {
+        "white-october/pagerfanta-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "lexik/form-filter-bundle": "~2.0"
+    },
+    "autoload": {
+        "psr-0": { "DocDigital\\Bundle\\UserBundle": "" }
+    },
+    "target-dir": "DocDigital/Bundle/UserBundle",
+    "extra": {},
+    "minimum-stability": "dev"
+}
