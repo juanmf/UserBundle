@@ -71,3 +71,24 @@ Follows my project's composer.json
     }
 }
 ```
+
+Configs
+=======
+
+```yml
+# app/config/config.yml
+...
+doctrine:
+    dbal:
+        ...
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: DocDigital\Bundle\UserBundle\Entity\User
+...
+```
