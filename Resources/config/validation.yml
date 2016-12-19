@@ -12,7 +12,7 @@ DocDigital\Bundle\UserBundle\Entity\User:
     email:
       - NotBlank: ~
       - Email:
-          checkMX: true
+          checkMX: false
     username:
       - NotBlank: ~
     plainPassword:

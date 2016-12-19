@@ -14,7 +14,6 @@ class DdUserBundle extends Bundle
         parent::build($container);
         $mappings = array(
             realpath(__DIR__ . '/Resources/config/doctrine/model') => 'FOS\UserBundle\Model',
-            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'FOS\UserBundle\Entity',
         );
 
         $container->addCompilerPass(
